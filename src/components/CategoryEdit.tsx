@@ -50,7 +50,7 @@ export default function CategoryEdit({ cat }: { cat: CatEditData }) {
         <button
           type="button"
           onClick={() => setEditing(true)}
-          className="cursor-pointer rounded-lg border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+          className="cursor-pointer rounded-lg border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground"
         >
           Edit
         </button>
@@ -97,7 +97,7 @@ function EditRow({ cat, onDone }: { cat: CatEditData; onDone: () => void }) {
       <button
         type="button"
         onClick={onDone}
-        className="cursor-pointer rounded-xl border border-border px-4 py-2 text-xs text-muted-foreground transition-colors hover:bg-white/5"
+        className="cursor-pointer rounded-xl border border-border px-4 py-2 text-xs text-muted-foreground transition-colors hover:bg-black/5"
       >
         Batal
       </button>

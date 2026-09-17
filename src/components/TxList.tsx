@@ -75,7 +75,7 @@ export default function TxList({ items }: { items: TxItem[] }) {
             <Link
               href={`/harian/${t.id}`}
               aria-label={`Edit transaksi ${t.note || t.category_name || ''}`}
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground opacity-100 transition-colors hover:bg-white/5 hover:text-foreground sm:opacity-0 sm:group-hover:opacity-100"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground opacity-100 transition-colors hover:bg-black/5 hover:text-foreground sm:opacity-0 sm:group-hover:opacity-100"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />

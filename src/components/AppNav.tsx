@@ -75,7 +75,7 @@ export default async function AppNav() {
             <Link
               key={n.href}
               href={n.href}
-              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+              className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground"
             >
               {n.icon}
               {n.label}

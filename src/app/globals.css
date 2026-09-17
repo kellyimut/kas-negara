@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   Kas Negara — Design System (ui-ux-pro-max: Glassmorphism, "Trust blue + profit green on dark")
+   Kas Negara — Design System (ui-ux-pro-max: Glassmorphism)
+   Light & bright theme: "Trust blue + profit green" di atas dasar terang
    Fonts: Lexend (heading) + Source Sans 3 (body) — "Corporate Trust" pairing
    ========================================================================== */
 
@@ -23,20 +24,20 @@
   --font-body: var(--font-source-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Dark, elegant finance-app base (design system: avoid pure white) */
+/* Bright, airy finance-app base (soft cool white, bukan putih murni) */
 :root {
-  --background: #0f172a;
-  --foreground: #f1f5f9;
-  --card: #192134;
-  --card-foreground: #f1f5f9;
-  --muted: #101a34;
-  --muted-foreground: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
+  --background: #eef2f9;
+  --foreground: #0f1d33;
+  --card: #ffffff;
+  --card-foreground: #0f1d33;
+  --muted: #e3e9f4;
+  --muted-foreground: #5a6b85;
+  --border: rgba(15, 29, 51, 0.1);
   --primary: #2563eb;
   --secondary: #3b82f6;
   --accent: #059669;
-  --income: #10b981;
-  --expense: #f43f5e;
+  --income: #0d9e6b;
+  --expense: #e11d48;
   --destructive: #dc2626;
 }
 
@@ -54,21 +55,17 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-/* Glass card — signature surface */
+/* Glass card — white frost di atas dasar terang */
 .glass {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.07) 0%,
-    rgba(255, 255, 255, 0.03) 100%
-  );
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 24px rgba(30, 64, 175, 0.08), 0 1px 3px rgba(30, 64, 175, 0.06);
 }
 
-/* Ambient aurora glows (fixed, non-interactive) */
+/* Ambient aurora glows (fixed, non-interactive) — versi lembut */
 .aurora {
   position: fixed;
   inset: 0;
@@ -83,23 +80,23 @@ h1, h2, h3, h4 {
   width: 55vw;
   height: 55vw;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.16;
+  filter: blur(130px);
+  opacity: 0.22;
 }
 .aurora::before {
-  background: #2563eb;
+  background: #93c5fd;
   top: -20vw;
   left: -15vw;
 }
 .aurora::after {
-  background: #059669;
+  background: #6ee7b7;
   bottom: -25vw;
   right: -15vw;
 }
 
 /* Focus visibility (a11y: keyboard nav) */
 :focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid #2563eb;
   outline-offset: 2px;
   border-radius: 4px;
 }

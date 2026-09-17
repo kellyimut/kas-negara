@@ -81,7 +81,7 @@ export default function TxEditForm({
             type="date"
             required
             defaultValue={tx.tx_date}
-            className={`${inputCls} [color-scheme:dark]`}
+            className={`${inputCls} [color-scheme:light]`}
           />
         </label>
         <label className="flex flex-col gap-1.5 text-sm">

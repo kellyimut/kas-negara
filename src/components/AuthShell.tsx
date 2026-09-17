@@ -13,7 +13,7 @@ export default function AuthShell({
 }) {
   return (
     <div className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="grid w-full max-w-4xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl md:grid-cols-2">
+      <div className="grid w-full max-w-4xl overflow-hidden rounded-3xl border border-border bg-card shadow-2xl shadow-primary/10 md:grid-cols-2">
         {/* Panel branding */}
         <div className="relative hidden flex-col justify-between bg-gradient-to-br from-[#1d3a8f] via-[#1e40af] to-[#0b1c4d] p-10 md:flex">
           <div className="flex items-center gap-3">

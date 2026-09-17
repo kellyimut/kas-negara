@@ -97,7 +97,7 @@ export default function TxForm({ cats }: { cats: CatOption[] }) {
             required
             value={txDate}
             onChange={(e) => setTxDate(e.target.value)}
-            className={`${inputCls} [color-scheme:dark]`}
+            className={`${inputCls} [color-scheme:light]`}
           />
         </label>
         <label className="flex flex-col gap-1.5 text-sm">

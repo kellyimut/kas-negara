@@ -21,7 +21,7 @@ export default function MonthPicker({
   }
 
   const btn =
-    'flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40';
+    'flex h-9 w-9 cursor-pointer items-center justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:bg-black/5 hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40';
 
   return (
     <div className="glass flex items-center gap-1 p-1">
@@ -36,7 +36,7 @@ export default function MonthPicker({
         onChange={(e) => {
           if (e.target.value) startTransition(() => router.push(`${basePath}?ym=${e.target.value}`));
         }}
-        className="cursor-pointer rounded-lg bg-transparent px-2 py-1.5 text-sm font-medium outline-none [color-scheme:dark]"
+        className="cursor-pointer rounded-lg bg-transparent px-2 py-1.5 text-sm font-medium outline-none [color-scheme:light]"
         aria-label="Pilih bulan"
       />
       <button type="button" onClick={() => go(1)} disabled={pending} className={btn} aria-label="Bulan berikutnya">
