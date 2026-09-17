@@ -31,8 +31,8 @@ export default function LoginPage() {
           </p>
         )}
         <label className="flex flex-col gap-1.5 text-sm">
-          Email
-          <input name="email" type="email" required autoComplete="email" placeholder="nama@email.com" className={inputCls} />
+          Email atau Username
+          <input name="email" type="text" required autoComplete="username" placeholder="email atau username" className={inputCls} />
         </label>
         <label className="flex flex-col gap-1.5 text-sm">
           Password
