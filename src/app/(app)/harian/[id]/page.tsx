@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound, redirect } from 'next/navigation';
 import { getSessionUserId } from '@/lib/auth';
 import { listCategories } from '@/lib/queries';
@@ -27,8 +28,17 @@ export default async function EditTxPage({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-xl font-bold">Edit Transaksi</h1>
-        <p className="text-sm opacity-60">Perbarui detail transaksi</p>
+        <Link
+          href="/harian"
+          className="mb-3 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+          Kembali ke Harian
+        </Link>
+        <h1 className="font-sans text-2xl font-bold">Edit Transaksi</h1>
+        <p className="text-sm text-muted-foreground">Perbarui detail transaksi</p>
       </div>
       <TxEditForm
         tx={{

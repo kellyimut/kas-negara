@@ -28,10 +28,17 @@ export default async function HarianPage({
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-xl font-bold">Catatan Harian</h1>
-          <p className="text-sm opacity-60">
-            {formatIDR(summary.income)} masuk • {formatIDR(summary.expense)} keluar •{' '}
-            {summary.txCount} transaksi
+          <h1 className="font-sans text-2xl font-bold">Catatan Harian</h1>
+          <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-income" />
+              {formatIDR(summary.income)} masuk
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-expense" />
+              {formatIDR(summary.expense)} keluar
+            </span>
+            <span>• {summary.txCount} transaksi</span>
           </p>
         </div>
         <MonthPicker currentYM={ym} basePath="/harian" />
@@ -39,13 +46,11 @@ export default async function HarianPage({
 
       <TxForm cats={cats.map((c) => ({ id: c.id, name: c.name, type: c.type }))} />
 
-      <section className="rounded-xl border border-black/10 bg-white dark:border-white/10 dark:bg-white/5">
-        <h2 className="border-b border-black/5 p-4 text-sm font-semibold uppercase tracking-wide opacity-60 dark:border-white/5">
+      <section className="glass p-5 sm:p-6">
+        <h2 className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Transaksi Bulan Ini
         </h2>
-        <div className="px-4">
-          <TxList items={txs} />
-        </div>
+        <TxList items={txs} />
       </section>
     </div>
   );

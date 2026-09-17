@@ -3,56 +3,49 @@
 import Link from 'next/link';
 import { useActionState } from 'react';
 import { loginAction } from '@/lib/actions/auth';
+import AuthShell from '@/components/AuthShell';
+
+const inputCls =
+  'w-full rounded-xl border border-border bg-muted/60 px-4 py-3 text-base outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-secondary focus:bg-muted';
 
 export default function LoginPage() {
   const [state, action, pending] = useActionState(loginAction, {});
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-sm">
-        <h1 className="mb-2 text-center text-2xl font-bold">Kas Negara</h1>
-        <p className="mb-6 text-center text-sm opacity-60">Masuk ke dashboard keuanganmu</p>
-
-        <form action={action} className="flex flex-col gap-4">
-          {state.error && (
-            <p className="rounded bg-red-500/10 p-3 text-sm text-red-500">{state.error}</p>
-          )}
-          <label className="flex flex-col gap-1 text-sm">
-            Email
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="rounded-md border border-black/15 bg-white px-3 py-2 text-base outline-none focus:border-blue-500 dark:border-white/20 dark:bg-black"
-            />
-          </label>
-          <label className="flex flex-col gap-1 text-sm">
-            Password
-            <input
-              name="password"
-              type="password"
-              required
-              autoComplete="current-password"
-              className="rounded-md border border-black/15 bg-white px-3 py-2 text-base outline-none focus:border-blue-500 dark:border-white/20 dark:bg-black"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={pending}
-            className="rounded-md bg-blue-600 px-4 py-2.5 font-medium text-white transition hover:bg-blue-700 disabled:opacity-50"
-          >
-            {pending ? 'Memproses...' : 'Masuk'}
-          </button>
-        </form>
-
-        <p className="mt-6 text-center text-sm opacity-70">
+    <AuthShell
+      title="Selamat datang kembali"
+      subtitle="Masuk untuk melanjutkan pencatatan keuanganmu"
+      footer={
+        <>
           Belum punya akun?{' '}
-          <Link href="/register" className="font-medium text-blue-600 hover:underline">
-            Daftar
+          <Link href="/register" className="font-medium text-secondary hover:underline">
+            Daftar gratis
           </Link>
-        </p>
-      </div>
-    </div>
+        </>
+      }
+    >
+      <form action={action} className="flex flex-col gap-4">
+        {state.error && (
+          <p role="alert" className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-red-400">
+            {state.error}
+          </p>
+        )}
+        <label className="flex flex-col gap-1.5 text-sm">
+          Email
+          <input name="email" type="email" required autoComplete="email" placeholder="nama@email.com" className={inputCls} />
+        </label>
+        <label className="flex flex-col gap-1.5 text-sm">
+          Password
+          <input name="password" type="password" required autoComplete="current-password" placeholder="••••••••" className={inputCls} />
+        </label>
+        <button
+          type="submit"
+          disabled={pending}
+          className="mt-2 cursor-pointer rounded-xl bg-primary px-4 py-3 font-sans font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-secondary hover:shadow-secondary/30 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {pending ? 'Memproses…' : 'Masuk'}
+        </button>
+      </form>
+    </AuthShell>
   );
 }
