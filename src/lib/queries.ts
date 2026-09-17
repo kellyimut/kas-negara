@@ -106,7 +106,8 @@ export async function listTransactions(
   const to = opts.to ?? '9999-12-31';
   const limit = opts.limit ?? 500;
   return query<TxRow & { category_name: string | null }>(
-    `SELECT t.id, t.user_id, t.category_id, t.type, t.amount, t.note, t.tx_date,
+    `SELECT t.id, t.user_id, t.category_id, t.type, t.amount, t.note,
+            to_char(t.tx_date, 'YYYY-MM-DD') AS tx_date,
             c.name AS category_name
      FROM transactions t
      LEFT JOIN categories c ON c.id = t.category_id

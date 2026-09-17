@@ -14,7 +14,8 @@ export default async function EditTxPage({
 
   const { id } = await params;
   const rows = await q(
-    `SELECT id, user_id, category_id, type, amount, note, tx_date
+    `SELECT id, user_id, category_id, type, amount, note,
+            to_char(tx_date, 'YYYY-MM-DD') AS tx_date
      FROM transactions WHERE id = $1 AND user_id = $2 LIMIT 1`,
     [id, userId]
   );
