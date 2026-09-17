@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { getSessionUserId } from '@/lib/auth';
-import { formatIDR, currentYM, validateYM } from '@/lib/format';
+import { formatIDR, currentYM, validateYM, monthRange } from '@/lib/format';
 import { listCategories, listTransactions, getMonthlySummary } from '@/lib/queries';
 import TxForm from '@/components/TxForm';
 import TxList from '@/components/TxList';
@@ -16,8 +16,7 @@ export default async function HarianPage({
 
   const sp = await searchParams;
   const ym = validateYM(sp.ym) ?? currentYM();
-  const from = `${ym}-01`;
-  const to = `${ym}-31`;
+  const [from, to] = monthRange(ym);
 
   const [cats, txs, summary] = await Promise.all([
     listCategories(userId),

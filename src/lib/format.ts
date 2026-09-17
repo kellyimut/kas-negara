@@ -46,3 +46,13 @@ export function validateYM(ym: string | undefined | null): string | undefined {
   if (ym && /^\d{4}-\d{2}$/.test(ym) && ym >= '2000-01' && ym <= '2999-12') return ym;
   return undefined;
 }
+
+/**
+ * Month range for DB queries: [first day, exclusive first day of next month].
+ * Avoids the invalid `${ym}-31` date for short months (Feb, Apr, Jun, Sep, Nov).
+ */
+export function monthRange(ym: string): [string, string] {
+  const [y, m] = ym.split('-').map(Number);
+  const nextYM = m === 12 ? `${y + 1}-01` : `${y}-${String(m + 1).padStart(2, '0')}`;
+  return [`${ym}-01`, `${nextYM}-01`];
+}

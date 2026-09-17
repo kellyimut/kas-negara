@@ -117,15 +117,23 @@ export async function listTransactions(
   );
 }
 
+function monthRange(ym: string): [string, string] {
+  // [first day, exclusive upper bound = first day of next month]
+  const [y, m] = ym.split('-').map(Number);
+  const nextYM = m === 12 ? `${y + 1}-01` : `${y}-${String(m + 1).padStart(2, '0')}`;
+  return [`${ym}-01`, `${nextYM}-01`];
+}
+
 export async function getMonthlySummary(userId: string, ym: string): Promise<Summary> {
+  const [from, to] = monthRange(ym);
   const rows = await query<{ income: string; expense: string; cnt: string }>(
     `SELECT
        COALESCE(SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END), 0) AS income,
        COALESCE(SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END), 0) AS expense,
        COUNT(*) AS cnt
      FROM transactions
-     WHERE user_id = $1 AND tx_date >= $2 AND tx_date <= $3`,
-    [userId, `${ym}-01`, `${ym}-31`]
+     WHERE user_id = $1 AND tx_date >= $2 AND tx_date < $3`,
+    [userId, from, to]
   );
   const r = rows[0];
   const income = Number(r.income);
@@ -137,6 +145,7 @@ export async function getCategoryBreakdown(
   userId: string,
   ym: string
 ): Promise<CategorySpend[]> {
+  const [from, to] = monthRange(ym);
   const rows = await query<{
     id: string;
     name: string;
@@ -150,11 +159,11 @@ export async function getCategoryBreakdown(
      LEFT JOIN transactions t
        ON t.category_id = c.id
        AND t.user_id = $1
-       AND t.tx_date >= $2 AND t.tx_date <= $3
+       AND t.tx_date >= $2 AND t.tx_date < $3
      WHERE c.user_id = $1
      GROUP BY c.id, c.name, c.type, c.monthly_budget
      ORDER BY c.type, total DESC`,
-    [userId, `${ym}-01`, `${ym}-31`]
+    [userId, from, to]
   );
   return rows.map((r) => ({
     id: r.id,
